@@ -6,11 +6,12 @@ router.get("/", (req, res) => {
 });
 
 router.get("/new", (req, res) => {
-  res.send("User new form");
+  res.render("users/new")
 });
 
 router.post("/", (req, res) => {
-  res.send("Create User");
+    console.log(req.body.firstName)
+  res.send("Hi");
 });
 
 router
@@ -23,6 +24,7 @@ router
     res.send(`Update user with ID ${req.params.id}`);
   })
   .delete((req, res) => {
+    
     res.send(`Delete User With ID  ${req.params.id}`);
   }); 
   const users = [{name: "Bethly"}, {name: "Sally"}];
@@ -31,5 +33,6 @@ router
     req.user = users[id];
     next()
   })
+  
 
 module.exports = router;

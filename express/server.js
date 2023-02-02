@@ -3,6 +3,8 @@ const app = express();
 const userRouter = require("./routes/users");
 
 app.set("view engine", "ejs");
+app.use(logger);
+app.use(express.urlencoded({extended: true}));
 
 app.get("/", (req, res) => {
   console.log("Here");
@@ -12,4 +14,9 @@ app.get("/", (req, res) => {
 
 app.use('/users', userRouter);
 
-app.listen(3000);
+function logger(req, res, next) {
+    console.log(req.originalUrl);
+    next();
+}
+
+app.listen(4000);
